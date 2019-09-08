@@ -1,5 +1,6 @@
 package com.mriksani.chatapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
@@ -13,6 +14,8 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         val toggle = ActionBarDrawerToggle(
@@ -28,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
+
+        loginBtnNav.setOnClickListener {
+            loginBtnNavClicked()
+        }
     }
 
     override fun onBackPressed() {
@@ -38,8 +44,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun loginBtnNavClicked(view: View){
-
+    private fun loginBtnNavClicked(){
+        startActivity(Intent(this,LoginActivity::class.java))
     }
 
     fun addChannelClicked(view: View){
